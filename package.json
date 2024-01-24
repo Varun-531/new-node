@@ -5,8 +5,11 @@
   "scripts": {
     "start": "nodemon -e js,ejs",
     "start:prod":"node index,js",
-    "test": "jest --detectOpenHandles"
+    "pretest": "cross-env NODE_ENV=test && npx sequelize-cli db:drop && cross-env NODE_ENV=test npx sequelize-cli db:migrate",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
+    "prepare": "husky install"
   },
+
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
